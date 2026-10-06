@@ -30,7 +30,7 @@ function updateDeadline() {
   suffix.textContent = state.closed ? '' : '남았어요.';
   note.textContent = state.closed ? '선발 및 행사 일정은 아래에서 확인해 주세요.' : `${state.round.name} 접수 ${state.round.period} · 23:59:59 마감 (한국 시간)`;
   link.textContent = state.closed ? '일정 보기' : '지원하기';
-  link.href = state.closed ? '#schedule' : 'https://swcss.pusan.ac.kr/bootcamp/11';
+  link.href = state.closed ? '#schedule' : 'https://swcss.pusan.ac.kr/bootcamp/12';
   link.target = state.closed ? '' : '_blank';
 }
 updateDeadline();
