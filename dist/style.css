@@ -18,3 +18,5 @@ header{top:var(--deadline-height)}
 .deadline-apply:focus-visible{outline-color:#1d4ed8;outline-offset:3px}
 @media(max-width:700px){:root{--site-header-height:74px;--deadline-height:120px}.deadline-bar{padding:8px 12px}.deadline-inner{padding:12px;gap:12px}.deadline-copy p{font-size:.875rem}.deadline-note{font-size:.75rem}.deadline-apply{min-width:86px;padding:10px 12px;font-size:.875rem}#deadline-label{display:block}#deadline-suffix{display:none}}
 @media(max-width:360px){.deadline-inner{flex-wrap:wrap}.deadline-apply{width:100%}}
+
+.stats .prize-stat strong{color:var(--orange);font-size:69.6px;font-weight:800}.stats .prize-stat strong span{font-size:20.4px;font-weight:800}.stats .prize-stat p{font-size:15.6px}.stats .prize-stat p b{font-weight:800;color:#f7f7f9}@media(max-width:700px){.stats .prize-stat strong{font-size:52.8px}.stats .prize-stat strong span{font-size:16.8px}.stats .prize-stat p{font-size:13px}}
