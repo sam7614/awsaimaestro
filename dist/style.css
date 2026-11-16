@@ -27,3 +27,45 @@ header{top:var(--deadline-height)}
 @media(max-width:700px){.award-grid .award-benefit{font-size:10px}}
 
 .participant-check{max-width:650px;margin:34px auto 0;padding:28px;border:2px solid #121720;background:#fff;text-align:left;color:#121720}.participant-check label{display:block;font-size:20px;font-weight:900;margin-bottom:14px}.participant-check-row{display:flex;gap:10px}.participant-check input{min-width:0;flex:1;height:52px;border:2px solid #121720;padding:0 16px;font:inherit;background:#fff;color:#121720}.participant-check button{min-width:150px;border:2px solid #121720;background:#121720;color:#fff;padding:0 18px;font:inherit;font-weight:800;cursor:pointer}.participant-check button:hover{background:#2a303b}.participant-check button:disabled{cursor:wait;opacity:.65}.participant-check-result{min-height:29px;margin:15px 0 4px;font-size:16px;font-weight:900}.participant-check-result.success{color:#16794a}.participant-check-result.not-found{color:#b33a22}.participant-check small{display:block;color:#626975;font-size:11px;line-height:1.6}.participant-check input:focus-visible,.participant-check button:focus-visible{outline:3px solid #1d4ed8;outline-offset:3px}@media(max-width:700px){.participant-check{padding:22px 18px}.participant-check label{font-size:18px}.participant-check-row{display:grid}.participant-check button{height:48px}.participant-check-result{font-size:14px}}
+
+/* Interactive challenge dashboards */
+.challenge-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.challenge-card{position:relative;min-height:430px;overflow:hidden;isolation:isolate;cursor:default}
+.challenge-card:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
+.challenge-copy{height:100%;display:flex;flex-direction:column;transition:opacity .2s,transform .25s}
+.challenge-card h3{font-size:24px;line-height:1.35;margin:28px 0 16px;word-break:keep-all}
+.challenge-card p{flex:1;min-height:110px}
+.preview-hint{display:block;margin-top:22px;color:#8f99aa;font-size:10px;letter-spacing:.06em}
+.challenge-preview{position:absolute;inset:0;z-index:2;background:linear-gradient(145deg,#151b27,#202a3b);opacity:0;pointer-events:none;transition:opacity .25s}
+.challenge-card:hover .challenge-copy,.challenge-card:focus .challenge-copy{opacity:0;transform:scale(.98)}
+.challenge-card:hover .challenge-preview,.challenge-card:focus .challenge-preview{opacity:1}
+.preview-slide{position:absolute;inset:24px;display:flex;flex-direction:column;opacity:0;transform:translateX(18px)}
+.challenge-card:hover .preview-slide,.challenge-card:focus .preview-slide{animation:previewCycle 7.5s infinite ease-in-out}
+.challenge-card:hover .preview-slide:nth-child(2),.challenge-card:focus .preview-slide:nth-child(2){animation-delay:2.5s}
+.challenge-card:hover .preview-slide:nth-child(3),.challenge-card:focus .preview-slide:nth-child(3){animation-delay:5s}
+.preview-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff22;padding-bottom:12px;font-size:9px;letter-spacing:.14em;color:#9eabc0}
+.preview-head b{color:var(--orange);font-size:9px}
+.preview-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:22px 0 18px}
+.preview-metrics div{padding:10px 8px;background:#ffffff08;border:1px solid #ffffff0c}
+.preview-metrics span{display:block;color:#8e9aae;font-size:8px;white-space:nowrap}
+.preview-metrics strong{display:block;margin-top:6px;color:#fff;font-size:17px;letter-spacing:-.04em}
+.preview-chart{height:145px;display:flex;align-items:flex-end;gap:8px;padding:16px 10px 0;background:linear-gradient(#ffffff05 1px,transparent 1px);background-size:100% 29px;border-left:1px solid #ffffff1a;border-bottom:1px solid #ffffff1a}
+.preview-chart i{position:relative;flex:1;height:var(--bar);max-width:42px;background:linear-gradient(180deg,var(--orange),#ff7437);box-shadow:0 0 18px #ff9d2430}
+.preview-chart i b{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-size:7px;color:#7f8a9e;font-style:normal}
+.preview-slide>small{margin-top:auto;color:#8390a5;font-size:9px;letter-spacing:.04em}
+.flow-visual{display:flex;align-items:center;justify-content:space-between;gap:7px;margin:auto 0}
+.flow-visual span{flex:1;padding:18px 6px;border:1px solid #ff9d2460;background:#ff9d2410;color:#fff;font-size:10px;font-weight:700;text-align:center;word-break:keep-all}
+.flow-visual b{color:var(--orange);font-size:16px}
+.pulse-line{display:flex;align-items:center;gap:9px;margin:12px auto 30px}
+.pulse-line i{width:7px;height:7px;border-radius:50%;background:#5c6a80}.pulse-line i:nth-child(3){background:var(--orange);box-shadow:0 0 15px var(--orange)}
+.insight-ring{width:150px;height:150px;border-radius:50%;margin:28px auto 18px;display:grid;place-items:center;background:conic-gradient(var(--orange) 0 78%,#ffffff12 78%);position:relative}
+.insight-ring:after{content:'';position:absolute;inset:14px;border-radius:50%;background:#1b2433}
+.insight-ring span{position:relative;z-index:1;font-size:30px;font-weight:900;color:#fff}
+.insight-list{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.insight-list i{padding:9px 4px;background:#ffffff08;color:#b8c1cf;font-size:8px;text-align:center;font-style:normal}
+.preview-dots{position:absolute;left:50%;bottom:12px;display:flex;gap:6px;transform:translateX(-50%)}
+.preview-dots i{width:18px;height:2px;background:#ffffff26}.preview-dots i:first-child{background:var(--orange)}
+@keyframes previewCycle{0%,28%{opacity:1;transform:translateX(0)}33%,100%{opacity:0;transform:translateX(-18px)}}
+@media(max-width:1000px){.challenge-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.challenge-card{min-height:410px}}
+@media(max-width:700px){.challenge-grid{grid-template-columns:1fr}.challenge-card{min-height:390px;padding:24px}.challenge-card h3{font-size:22px}.challenge-card p{min-height:0}.preview-slide{inset:20px}.preview-chart{height:125px}.preview-hint{color:var(--orange)}}
+@media(prefers-reduced-motion:reduce){.challenge-card:hover .preview-slide,.challenge-card:focus .preview-slide{animation:none}.challenge-card:hover .preview-slide:first-child,.challenge-card:focus .preview-slide:first-child{opacity:1;transform:none}}
