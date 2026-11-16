@@ -69,3 +69,19 @@ header{top:var(--deadline-height)}
 @media(max-width:1000px){.challenge-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.challenge-card{min-height:410px}}
 @media(max-width:700px){.challenge-grid{grid-template-columns:1fr}.challenge-card{min-height:390px;padding:24px}.challenge-card h3{font-size:22px}.challenge-card p{min-height:0}.preview-slide{inset:20px}.preview-chart{height:125px}.preview-hint{color:var(--orange)}}
 @media(prefers-reduced-motion:reduce){.challenge-card:hover .preview-slide,.challenge-card:focus .preview-slide{animation:none}.challenge-card:hover .preview-slide:first-child,.challenge-card:focus .preview-slide:first-child{opacity:1;transform:none}}
+
+/* Hackathon judges — monochrome line portraits */
+.judges{max-width:1267px;margin:58px auto 0;padding-top:38px;border-top:1px solid var(--line)}
+.judges-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:28px}
+.judges-heading>span{color:var(--orange);font-size:10px;font-weight:700;letter-spacing:.16em;align-self:flex-start}
+.judges-heading h3{margin:0;font-size:28px;letter-spacing:-.04em}
+.judges-heading p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+.judge-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line)}
+.judge-card{min-width:0;padding:26px 20px 24px;border-right:1px solid var(--line);background:#141a24}
+.judge-card:last-child{border-right:0}
+.judge-card svg{display:block;width:min(100%,180px);height:auto;margin:0 auto 18px;color:#d9dee7;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.judge-card>div{border-top:1px solid var(--line);padding-top:17px}
+.judge-card strong{display:block;font-size:18px;letter-spacing:-.025em}
+.judge-card span{display:block;margin-top:7px;color:var(--muted);font-size:11px;line-height:1.5;word-break:keep-all}
+@media(max-width:900px){.judge-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.judge-card:nth-child(2){border-right:0}.judge-card:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media(max-width:700px){.judges{margin-top:40px;padding-top:30px}.judges-heading{display:block}.judges-heading>span{display:block;margin-bottom:10px}.judges-heading h3{font-size:24px}.judges-heading p{margin-top:12px;font-size:12px}.judge-card{padding:20px 12px}.judge-card svg{width:130px;margin-bottom:12px}.judge-card strong{font-size:15px}.judge-card span{font-size:9px}}
