@@ -11,8 +11,8 @@ function updateDeadline() {
   document.getElementById('deadline-suffix').textContent = '';
   document.getElementById('deadline-note').textContent = '다음 설렘은 2027년에 만나요.';
   const link = document.getElementById('deadline-apply');
-  link.textContent = '2027년 기대하기';
-  link.href = '#apply';
+  link.textContent = '참가 여부 확인하기';
+  link.href = '#participant-check';
   link.removeAttribute('target');
 }
 updateDeadline();const deadlineBar = document.querySelector('.deadline-bar');
@@ -22,3 +22,50 @@ function syncDeadlineHeight() {
 syncDeadlineHeight();
 if ('ResizeObserver' in window) new ResizeObserver(syncDeadlineHeight).observe(deadlineBar);
 else window.addEventListener('resize', syncDeadlineHeight);
+const participantForm = document.getElementById('participant-check');
+if (participantForm) {
+  const nameInput = document.getElementById('participant-name');
+  const result = document.getElementById('participant-check-result');
+  const submitButton = participantForm.querySelector('button[type="submit"]');
+
+  participantForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const name = nameInput.value.normalize('NFC').trim();
+    result.className = 'participant-check-result';
+
+    if (name.length < 2) {
+      result.textContent = '앗, 이름을 두 글자 이상 적어주세요.';
+      result.classList.add('not-found');
+      nameInput.focus();
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = '명단 찾는 중…';
+    result.textContent = '잠깐만요. 명단을 살펴보고 있어요.';
+
+    try {
+      const response = await fetch('/api/check-participant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || '확인에 실패했습니다.');
+
+      if (data.found) {
+        result.textContent = '신청이 되었습니다! 이름도 열정도, 명단에 착 붙어 있어요.';
+        result.classList.add('success');
+      } else {
+        result.textContent = '신청하지 않았습니다. 혹시 이름을 다시 한번 살펴봐 주세요.';
+        result.classList.add('not-found');
+      }
+    } catch (error) {
+      result.textContent = error.message || '명단이 잠깐 숨었어요. 조금 뒤 다시 확인해 주세요.';
+      result.classList.add('not-found');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = '참가 여부 확인';
+    }
+  });
+}
