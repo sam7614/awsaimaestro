@@ -4,16 +4,16 @@ const tabs=[...document.querySelectorAll('[role="tab"]')];
 function selectDay(index){tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1});const panel=document.getElementById('program-content');panel.setAttribute('aria-labelledby','tab'+index);panel.replaceChildren(...programs[index].map(([time,label])=>{const row=document.createElement('div');row.className='program-row';const t=document.createElement('time');t.textContent=time;const text=document.createElement('span');text.textContent=label;row.append(t,text);return row}))}
 tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectDay(i));tab.addEventListener('keydown',e=>{let next=i;if(e.key==='ArrowRight')next=(i+1)%tabs.length;else if(e.key==='ArrowLeft')next=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')next=0;else if(e.key==='End')next=tabs.length-1;else return;e.preventDefault();selectDay(next);tabs[next].focus()})});selectDay(0);
 
-// Additional recruitment remains open until the available places are filled.
+// The 2026 application period has closed.
 function updateDeadline() {
-  document.getElementById('deadline-label').textContent = '참가자';
-  document.getElementById('deadline-timer').textContent = '추가모집 중';
+  document.getElementById('deadline-label').textContent = '2026 지원은';
+  document.getElementById('deadline-timer').textContent = '여기까지!';
   document.getElementById('deadline-suffix').textContent = '';
-  document.getElementById('deadline-note').textContent = '모집 기간 · 충원 시까지';
+  document.getElementById('deadline-note').textContent = '다음 설렘은 2027년에 만나요.';
   const link = document.getElementById('deadline-apply');
-  link.textContent = '지원하기';
-  link.href = 'https://docs.google.com/forms/d/e/1FAIpQLScwZphrQFuArVjuF_IMr6hJHepWY21zwV-COzv-q2yeFsfxdA/viewform';
-  link.target = '_blank';
+  link.textContent = '2027년 기대하기';
+  link.href = '#apply';
+  link.removeAttribute('target');
 }
 updateDeadline();const deadlineBar = document.querySelector('.deadline-bar');
 function syncDeadlineHeight() {
