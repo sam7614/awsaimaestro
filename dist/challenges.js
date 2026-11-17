@@ -69,6 +69,6 @@ if (challengeGrid) {
   challengeGrid.innerHTML = hackathonChallenges.map((challenge) => `
     <article class="challenge-card" tabindex="0">
       <div class="challenge-copy"><div class="card-top"><span>${challenge.number} / ${challenge.category}</span><b>↗</b></div><h3>${challenge.title}</h3><p>${challenge.summary}</p><div class="tags">${challenge.tags.map((tag) => `<span>${tag}</span>`).join('')}</div><small class="preview-hint">마우스를 올리거나 탭해 구현 장면 보기</small></div>
-      <div class="challenge-preview" aria-hidden="true">${challenge.scenes.map((scene, index) => `<div class="preview-slide scene-slide scene-${challenge.number}-${index + 1}"><div class="preview-head"><span>${scene.label}</span><b>${scene.status}</b></div><div class="scene-stage">${scene.html}</div><small>${scene.caption}</small></div>`).join('')}<div class="preview-dots"><i></i><i></i><i></i></div></div>
+      <div class="challenge-preview" aria-hidden="true">${[2, 0, 1].map((sceneIndex, index) => { const scene = challenge.scenes[sceneIndex]; return `<div class="preview-slide scene-slide scene-${challenge.number}-${index + 1}"><div class="preview-head"><span>${scene.label}</span><b>${scene.status}</b></div><div class="scene-stage">${scene.html}</div><small>${scene.caption}</small></div>`; }).join('')}<div class="preview-dots"><i></i><i></i><i></i></div></div>
     </article>`).join('');
 }
