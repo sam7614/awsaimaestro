@@ -5,7 +5,7 @@ const hackathonChallenges = [
     scenes: [
       { label: 'DEVICE ONBOARDING', status: 'STEP 1', caption: '설비 문서를 올리면 AI가 연동 항목을 읽습니다.', html: `<div class="scene-upload"><i>PDF</i><strong>AHU-03_Manual.pdf</strong><span>128개 항목 분석 완료</span><b>문서 분석 중 ···</b></div>` },
       { label: 'PROTOCOL MAPPING', status: 'STEP 2', caption: 'BACnet과 Modbus 주소를 자동으로 매핑합니다.', html: `<div class="scene-mapping"><div><b>실내 온도</b><span>AI_TEMP_03</span></div><em>→</em><div><b>BACnet</b><span>AI:3 · AV:12</span></div><small>신뢰도 98% · 검토 2건</small></div>` },
-      { label: 'ADAPTER GENERATED', status: 'READY', caption: '생성된 어댑터를 샌드박스에서 바로 시험합니다.', html: `<div class="scene-code"><span>adapter.ts</span><pre>readPoint('AI:3/AV:12')\n  .map(toBmsValue)\n  .publish('ahu.temp')</pre><b>✓ 12/12 TEST PASSED</b></div>` }
+      { label: 'IN THE FIELD', status: 'LIVE', caption: '관리자가 실제 빌딩을 보며 AI 에이전트로 설비 연동을 제어합니다.', html: `<figure class="industry-scene"><img src="assets/challenge-scenes/building-agent.webp" alt="" loading="lazy"><figcaption>BUILDING FACILITY AGENT</figcaption></figure>` }
     ]
   },
   {
@@ -14,7 +14,7 @@ const hackathonChallenges = [
     scenes: [
       { label: 'ASK YOUR ENERGY DATA', status: 'CHAT', caption: '운영자는 자연어로 에너지 현황을 질문합니다.', html: `<div class="scene-chat"><div class="user-bubble">어제 전력 사용이 왜 늘었어?</div><div class="ai-bubble"><i>AI</i><p>14시 이후 냉동기 2호의 부하가 평소보다 31% 높았습니다.</p></div><span>근거 데이터 8개 연결됨</span></div>` },
       { label: 'AUTO VISUALIZATION', status: 'LIVE', caption: '질문에 맞는 비교 화면을 즉시 생성합니다.', html: `<div class="scene-energy"><div><span>어제</span><strong>8.4 MWh</strong><small>+12%</small></div><svg viewBox="0 0 260 90" aria-hidden="true"><polyline points="4,72 38,64 70,67 104,45 138,52 174,22 210,38 256,14"/><line x1="4" y1="75" x2="256" y2="75"/></svg><b>14:00 이상 구간 감지</b></div>` },
-      { label: 'CAUSE & ACTION', status: 'INSIGHT', caption: '원인과 실행 가능한 조치를 함께 제안합니다.', html: `<div class="scene-action"><strong>냉동기 2호 과부하</strong><ul><li>설정 온도 1℃ 상향</li><li>피크 시간 운전 분산</li><li>필터 차압 점검 요청</li></ul><button>조치 시나리오 적용</button></div>` }
+      { label: 'IN THE FIELD', status: 'LIVE', caption: '에너지 운영자가 현장 설비의 이상을 AI와 함께 찾아 조치합니다.', html: `<figure class="industry-scene"><img src="assets/challenge-scenes/energy-analysis.webp" alt="" loading="lazy"><figcaption>ENERGY OPERATIONS AI</figcaption></figure>` }
     ]
   },
   {
@@ -23,7 +23,7 @@ const hackathonChallenges = [
     scenes: [
       { label: 'TODAY SCHEDULE', status: '08:30', caption: '강의와 예약 일정에서 필요한 공간을 찾습니다.', html: `<div class="scene-calendar"><div><b>09:00</b><span>AI 강의 · 301호</span></div><div><b>11:00</b><span>프로젝트 · 204호</span></div><div class="off"><b>14:00</b><span>예약 취소 · 402호</span></div></div>` },
       { label: 'ZONE CONTROL', status: 'AUTO', caption: '사용할 공간만 미리 쾌적하게 운전합니다.', html: `<div class="scene-zones"><div class="on"><b>301</b><span>22.5℃</span><i>가동</i></div><div><b>302</b><span>25.1℃</span><i>대기</i></div><div class="on"><b>204</b><span>23.0℃</span><i>가동</i></div><div><b>402</b><span>OFF</span><i>절전</i></div></div>` },
-      { label: 'SCHEDULE RECALCULATED', status: 'NOW', caption: '예약 변경을 감지해 운전 계획을 다시 계산합니다.', html: `<div class="scene-recalc"><span>예약 취소 감지</span><b>402호 운전 중지</b><div><i></i><i></i><i></i><i></i></div><strong>오늘 18.4 kWh 절감 예상</strong></div>` }
+      { label: 'IN THE FIELD', status: 'LIVE', caption: '시설 관리자가 사용 중인 공간만 골라 냉난방을 자동 운전합니다.', html: `<figure class="industry-scene"><img src="assets/challenge-scenes/hvac-operation.webp" alt="" loading="lazy"><figcaption>SMART HVAC OPERATION</figcaption></figure>` }
     ]
   },
   {
@@ -32,7 +32,7 @@ const hackathonChallenges = [
     scenes: [
       { label: 'FLOOR PLAN TO 3D', status: 'CONVERT', caption: '2D 도면에서 벽·공간·설비를 자동 인식합니다.', html: `<div class="scene-floorplan"><svg viewBox="0 0 260 150" aria-hidden="true"><path d="M8 8h102v55h65V8h77v134H150V92H75v50H8Z"/><path d="M42 8v55m68-28H42m133 57h77m-52-84v55M75 92v50"/><circle cx="126" cy="78" r="7"/><circle cx="216" cy="78" r="7"/></svg><b>공간 12 · 설비 42 인식</b></div>` },
       { label: 'LIVE DIGITAL TWIN', status: '3D', caption: '설비 상태가 3D 공간 위에 실시간으로 표시됩니다.', html: `<div class="scene-building"><div class="building-iso"><i></i><i></i><i></i><i></i><span>AHU-03</span><b>주의</b></div><small>3층 동측 · 진동값 상승</small></div>` },
-      { label: 'FACILITY COPILOT', status: 'ASK', caption: '자연어로 공간과 설비 상태를 바로 조회합니다.', html: `<div class="scene-chat twin"><div class="user-bubble">지금 비어 있는 회의실은?</div><div class="ai-bubble"><i>AI</i><p>2층 204호와 206호가 비어 있습니다. 204호는 냉방도 준비됐어요.</p></div><button>204호 보기 →</button></div>` }
+      { label: 'IN THE FIELD', status: 'LIVE', caption: '정비 기술자가 실제 설비와 디지털 트윈을 겹쳐 보며 고장을 찾습니다.', html: `<figure class="industry-scene"><img src="assets/challenge-scenes/digital-twin.webp" alt="" loading="lazy"><figcaption>DIGITAL TWIN MAINTENANCE</figcaption></figure>` }
     ]
   },
   {
@@ -41,7 +41,7 @@ const hackathonChallenges = [
     scenes: [
       { label: 'MULTILINGUAL GUIDE', status: 'EN · KR', caption: '음성이나 문자로 원하는 여행을 편하게 묻습니다.', html: `<div class="scene-phone"><div class="phone-top">BUSAN AI GUIDE <b>EN</b></div><p class="tour-question">“I love local food and the sea.”</p><div class="tour-answer">Great! I made a 4-hour seaside food trip for you.</div><span>● 음성으로 듣기</span></div>` },
       { label: 'YOUR BUSAN ROUTE', status: '4 HOURS', caption: '취향·위치·날씨에 맞춘 동선을 생성합니다.', html: `<div class="scene-route"><svg viewBox="0 0 260 145" aria-hidden="true"><path d="M22 112C54 88 59 37 106 51s45 68 86 44 31-69 50-78"/><circle cx="23" cy="112" r="8"/><circle cx="107" cy="51" r="8"/><circle cx="193" cy="94" r="8"/><circle cx="242" cy="17" r="8"/></svg><div><span>자갈치</span><span>흰여울</span><span>광안리</span></div></div>` },
-      { label: 'ON-TRIP ASSIST', status: 'ALERT', caption: '이동 중 교통 변화와 도움 요청에 즉시 대응합니다.', html: `<div class="scene-travel-alert"><b>비가 20분 뒤 시작돼요</b><p>야외 일정을 먼저 보고, 실내 전시를 다음 코스로 바꿨어요.</p><div><button>새 코스 보기</button><button>SOS 도움</button></div></div>` }
+      { label: 'IN THE FIELD', status: 'LIVE', caption: '외국인 여행자가 부산 현장에서 다국어 AI 안내로 이동합니다.', html: `<figure class="industry-scene"><img src="assets/challenge-scenes/tourism-guide.webp" alt="" loading="lazy"><figcaption>BUSAN AI TRAVEL GUIDE</figcaption></figure>` }
     ]
   },
   {
@@ -50,7 +50,7 @@ const hackathonChallenges = [
     scenes: [
       { label: 'DOCUMENT INBOX', status: '3 FILES', caption: '물류 문서를 한 번에 올리면 종류를 자동 분류합니다.', html: `<div class="scene-docs"><div><i>B/L</i><span>bill_of_lading.pdf</span><b>완료</b></div><div><i>INV</i><span>invoice_1028.pdf</span><b>완료</b></div><div><i>PKG</i><span>packing_list.pdf</span><b>분석</b></div></div>` },
       { label: 'OCR FIELD EXTRACTION', status: '96%', caption: '핵심 항목을 읽어 업무 시스템 입력값으로 바꿉니다.', html: `<div class="scene-ocr"><div class="paper-lines"><i></i><i></i><i></i><i></i><mark></mark></div><div><span>SHIPPER</span><b>BUSAN TECH</b><span>WEIGHT</span><b>1,240 KG</b><span>PORT</span><b>BUSAN</b></div></div>` },
-      { label: 'VALIDATION & CUSTOMS', status: '2 ISSUES', caption: '오류를 찾고 HS 코드와 통관 조치를 제안합니다.', html: `<div class="scene-validation"><div><b>!</b><span>Invoice 수량 불일치</span></div><div><b>!</b><span>원산지 항목 누락</span></div><strong>추천 HS CODE · 8471.30</strong><button>통관 문서 생성</button></div>` }
+      { label: 'IN THE FIELD', status: 'LIVE', caption: '항만 작업자가 현장에서 문서를 촬영해 통관 정보를 바로 연결합니다.', html: `<figure class="industry-scene"><img src="assets/challenge-scenes/logistics-ocr.webp" alt="" loading="lazy"><figcaption>PORT DOCUMENT AUTOMATION</figcaption></figure>` }
     ]
   },
   {
@@ -59,7 +59,7 @@ const hackathonChallenges = [
     scenes: [
       { label: 'CAREER PROFILE', status: 'ANALYZED', caption: '이력서에서 강점과 보완 역량을 찾아냅니다.', html: `<div class="scene-profile"><div class="avatar">K</div><div><strong>AI 서비스 개발자</strong><span>직무 적합도 87%</span></div><ul><li class="good">Python · 데이터 분석</li><li class="good">프로젝트 경험</li><li>보완: 클라우드 배포</li></ul></div>` },
       { label: 'LOCAL JOB MATCH', status: '12 JOBS', caption: '역량과 희망 조건에 맞는 지역 채용을 연결합니다.', html: `<div class="scene-jobs"><div><b>AI 솔루션 개발</b><span>부산 · 92% MATCH</span></div><div><b>데이터 엔지니어</b><span>부산 · 86% MATCH</span></div><div><b>클라우드 주니어</b><span>울산 · 81% MATCH</span></div></div>` },
-      { label: 'AI MOCK INTERVIEW', status: 'COACH', caption: '가상 면접 후 답변별 개선 포인트를 코칭합니다.', html: `<div class="scene-interview"><div class="interviewer"><i>AI</i><span>팀 갈등을 해결한 경험을 말해보세요.</span></div><div class="voice"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p><b>피드백</b> 결과보다 본인의 행동을 한 문장 더 구체화해 보세요.</p></div>` }
+      { label: 'IN THE FIELD', status: 'LIVE', caption: '청년 구직자가 멘토와 함께 AI 모의면접과 직무 코칭을 받습니다.', html: `<figure class="industry-scene"><img src="assets/challenge-scenes/career-coach.webp" alt="" loading="lazy"><figcaption>AI CAREER COACHING</figcaption></figure>` }
     ]
   }
 ];
