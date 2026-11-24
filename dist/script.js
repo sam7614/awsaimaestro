@@ -1,71 +1,13 @@
-const programs=[[
-['10:00–12:00','생성형 AI & Bedrock 핵심 · 프롬프트 엔지니어링'],['12:00–13:00','중식'],['13:00–14:00','AI Agent & Vibe Coding · Kiro 실습'],['14:00–15:30','RAG 빠른 구축법 · 미니 RAG 시스템 핸즈온'],['15:30–17:00','부산시 7개 내외 주제 브리핑 · 팀 편성 · 아키텍처 스케치'],['17:00–18:00','개발 환경 세팅 & Q&A']],[['09:00–10:00','개회식 & 과제 확인'],['10:00–13:00','Sprint 1 · 핵심 기능 개발'],['13:00–14:00','중식'],['14:00–18:00','Sprint 2 · 기능 확장 & 통합'],['19:00–20:00','중간 체크포인트 · 팀별 3분 발표'],['20:00–02:00','Sprint 3 · 야간 개발 & 기술 멘토링']],[['02:00–06:00','Sprint 4 · 솔루션 완성 & 테스트'],['06:00–09:00','발표 준비 & 데모 리허설'],['09:00–11:30','최종 발표 · 팀당 7분 피칭 + 3분 Q&A'],['11:30–14:00','우수팀 시상식 & 폐회']]];
-const tabs=[...document.querySelectorAll('[role="tab"]')];
-function selectDay(index){tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1});const panel=document.getElementById('program-content');panel.setAttribute('aria-labelledby','tab'+index);panel.replaceChildren(...programs[index].map(([time,label])=>{const row=document.createElement('div');row.className='program-row';const t=document.createElement('time');t.textContent=time;const text=document.createElement('span');text.textContent=label;row.append(t,text);return row}))}
-tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectDay(i));tab.addEventListener('keydown',e=>{let next=i;if(e.key==='ArrowRight')next=(i+1)%tabs.length;else if(e.key==='ArrowLeft')next=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')next=0;else if(e.key==='End')next=tabs.length-1;else return;e.preventDefault();selectDay(next);tabs[next].focus()})});selectDay(0);
-
-// The 2026 application period has closed.
-function updateDeadline() {
-  document.getElementById('deadline-label').textContent = '2026 지원은';
-  document.getElementById('deadline-timer').textContent = '여기까지!';
-  document.getElementById('deadline-suffix').textContent = '';
-  document.getElementById('deadline-note').textContent = '다음 설렘은 2027년에 만나요.';
-  const link = document.getElementById('deadline-apply');
-  link.textContent = '참가 여부 확인하기';
-  link.href = '#participant-check';
-  link.removeAttribute('target');
-}
-updateDeadline();const deadlineBar = document.querySelector('.deadline-bar');
-function syncDeadlineHeight() {
-  document.documentElement.style.setProperty('--deadline-height', `${Math.ceil(deadlineBar.getBoundingClientRect().height)}px`);
-}
-syncDeadlineHeight();
-if ('ResizeObserver' in window) new ResizeObserver(syncDeadlineHeight).observe(deadlineBar);
-else window.addEventListener('resize', syncDeadlineHeight);
-const participantForm = document.getElementById('participant-check');
-if (participantForm) {
-  const nameInput = document.getElementById('participant-name');
-  const result = document.getElementById('participant-check-result');
-  const submitButton = participantForm.querySelector('button[type="submit"]');
-
-  participantForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const name = nameInput.value.normalize('NFC').trim();
-    result.className = 'participant-check-result';
-
-    if (name.length < 2) {
-      result.textContent = '앗, 이름을 두 글자 이상 적어주세요.';
-      result.classList.add('not-found');
-      nameInput.focus();
-      return;
-    }
-
-    submitButton.disabled = true;
-    submitButton.textContent = '명단 찾는 중…';
-    result.textContent = '잠깐만요. 명단을 살펴보고 있어요.';
-
-    try {
-      const response = await fetch('/api/check-participant', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name })
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || '확인에 실패했습니다.');
-
-      if (data.found) {
-        result.textContent = '신청이 되었습니다! 이름도 열정도, 명단에 착 붙어 있어요.';
-        result.classList.add('success');
-      } else {
-        result.textContent = '신청하지 않았습니다. 혹시 이름을 다시 한번 살펴봐 주세요.';
-        result.classList.add('not-found');
-      }
-    } catch (error) {
-      result.textContent = error.message || '명단이 잠깐 숨었어요. 조금 뒤 다시 확인해 주세요.';
-      result.classList.add('not-found');
-    } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = '참가 여부 확인';
-    }
-  });
-}
+const teams=[
+{n:1,k:'AUTOBRIDGE',t:'AI 기반 빌딩 설비 연동 규격 자동 생성 Agent',s:'제조사 매뉴얼의 주소·자료형·각주를 AI가 읽고, 표준 연동 설정을 만든 뒤 가상 시험과 사람의 승인까지 연결했습니다.',tags:['Amazon Bedrock','Spring Boot','CloudWatch','BMS · Modbus'],p:'문서 해석 → 설정 생성 → 가상 시험 → 오류 수리 → 승인'},
+{n:2,k:'건전지',t:'생성형 AI 기반 에너지 운영 대시보드',s:'관리자가 자연어로 묻기만 하면 건물의 에너지 이상을 찾고, 원인을 설명하고, 실행할 조치의 우선순위까지 제안합니다.',tags:['Natural Language Query','Anomaly Detection','Energy Data','AI Agent'],p:'질문 하나로 이상 → 원인 → 조치 순위까지'},
+{n:3,k:'ON:D · 대상',t:'스케줄 기반 스마트 HVAC',s:'강의 시간표·예약·기상 데이터를 결합해 냉난방 운전 계획을 실시간 재계산하고, 공간이 사용되기 전에 쾌적한 환경을 준비합니다.',tags:['Amazon Bedrock','AWS Lambda','DynamoDB','HVAC Simulator'],p:'사람이 오기 전 공간을 먼저 준비하는 AI'},
+{n:4,k:'에게 · 최우수상',t:'AI 디지털트윈 기반 공간 가시화 및 운영 최적화',s:'2D 도면에서 공간과 설비를 인식해 3D 웹 트윈으로 바꾸고, 자연어 조회와 설비 상태 시각화·최적 제어를 하나의 운영 화면에 담았습니다.',tags:['Floorplan AI','3D Web Viewer','Digital Twin','Simulation'],p:'도면에서 운영 가능한 3D 공간으로'},
+{n:5,k:'BUSAN NOW',t:'외국인 관광객 다국어 맞춤형 안내 Agent',s:'관광객의 언어와 취향에 맞춰 일정을 만들고, 이동·혼잡·돌발 상황이 생기면 기존 계획을 최대한 지키며 필요한 구간만 다시 짭니다.',tags:['Amazon Bedrock','AWS Lambda','DynamoDB','Multilingual Agent'],p:'데이터로 일정을 짜고, 문제 구간만 고치는 여행'},
+{n:6,k:'최우수상',t:'AI 기반 첨단물류 문서 자동화 Agent',s:'B/L·송장·포장명세서를 읽어 항목을 대조하고, 오류 재확인·HS 코드 추천·통관 서류 초안과 WMS 등록까지 이어지는 흐름을 구현했습니다.',tags:['OCR','Multi-Agent','HS Code','WMS · ERP'],p:'읽기는 AI, 판정은 코드, 전달은 근거와 함께'},
+{n:7,k:'부산커리어',t:'생성형 AI 기반 청년취업 맞춤형 멘토링 Agent',s:'청년의 경험과 희망 조건을 채용공고·지원정책에 연결하고, 선택한 공고를 바탕으로 꼬리질문이 이어지는 모의면접까지 제공합니다.',tags:['Amazon Bedrock','RAG','Job Matching','Interview Coach'],p:'내 경험과 이어지는 부산의 일자리'}];
+const panel=document.querySelector('#team-panel'),tabs=[...document.querySelectorAll('[data-team]')];
+function renderTeam(number){const x=teams[number-1];panel.innerHTML=`<article class="team-result"><div class="team-copy"><p class="team-number">TEAM ${String(x.n).padStart(2,'0')}</p><p class="team-kicker">${x.k}</p><h3>${x.t}</h3><p class="team-summary">${x.s}</p><blockquote>“${x.p}”</blockquote><ul class="tags">${x.tags.map(v=>`<li>${v}</li>`).join('')}</ul><div class="team-actions"><button class="watch-button" type="button">시연 영상 재생 <span>▶</span></button><a href="results-assets/teams/team-${x.n}/presentation.pdf" target="_blank" rel="noopener">발표자료 보기 <span>↗</span></a></div></div><div class="team-visual"><img src="results-assets/teams/team-${x.n}/result.webp" alt="${x.t} 대표 결과 화면"><p><span>RESULT FRAME</span><b>${String(x.n).padStart(2,'0')} / 07</b></p></div></article><dialog class="video-dialog"><button class="dialog-close" aria-label="영상 닫기">×</button><p>TEAM ${String(x.n).padStart(2,'0')} · DEMO FILM</p><video controls preload="metadata" poster="results-assets/teams/team-${x.n}/cover.webp"><source src="results-assets/teams/team-${x.n}/demo.mp4" type="video/mp4">브라우저에서 영상을 재생할 수 없습니다.</video></dialog>`;tabs.forEach(t=>t.setAttribute('aria-selected',String(Number(t.dataset.team)===number)));const d=panel.querySelector('dialog'),v=d.querySelector('video');panel.querySelector('.watch-button').onclick=()=>d.showModal();panel.querySelector('.dialog-close').onclick=()=>{v.pause();d.close()};d.onclick=e=>{if(e.target===d){v.pause();d.close()}}}
+tabs.forEach(t=>t.onclick=()=>renderTeam(Number(t.dataset.team)));renderTeam(1);
+const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('is-visible')}),{threshold:.12});document.querySelectorAll('.section-heading,.photo-grid figure,.award-card,.award-photo').forEach(e=>observer.observe(e));
+if('scrollRestoration'in history)history.scrollRestoration='manual';const resetTop=()=>{if(!location.hash)requestAnimationFrame(()=>scrollTo(0,0))};resetTop();addEventListener('pageshow',resetTop);
